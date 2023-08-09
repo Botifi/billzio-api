@@ -66,4 +66,12 @@ class ProductListData(BaseModel):
 
 
 class ProductsListFilters(BaseModel):
-    limit: int
+    page: Optional[int] = None
+    limit: Optional[int] = None
+    search: Optional[str] = None
+
+
+class CategoriesListFilters(BaseModel):
+    page: Optional[int] = None
+    limit: Optional[int] = None
+    search: Optional[str] = None
