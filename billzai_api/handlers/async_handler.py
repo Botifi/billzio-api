@@ -3,8 +3,8 @@ from typing import Optional
 from httpx import AsyncClient
 from .base import BaseBillzHandler
 from ..exceptions import *
-from ..models.categories import CategoriesListData
-from ..models.products import ProductsListFilters, ProductListData, CategoriesListFilters
+from ..models.categories import CategoriesListData, CategoriesListFilters
+from ..models.products import ProductsListFilters, ProductListData
 
 
 class AsyncBillzHandler(BaseBillzHandler):

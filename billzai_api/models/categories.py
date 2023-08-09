@@ -40,3 +40,4 @@ class CategoriesListFilters(BaseModel):
     page: Optional[int] = None
     limit: Optional[int] = None
     search: Optional[str] = None
+    is_deleted: bool = False
