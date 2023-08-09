@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -50,7 +50,7 @@ class Product(BaseModel):
     is_variative: bool
     main_image_url: str
     categories: List[Category]
-    custom_fields: List[CustomField]
+    custom_fields: Optional[List[CustomField]]
     measurement_unit: MeasurementUnit
     parent_id: str
     product_attributes: List[ProductAttribute]
@@ -58,6 +58,11 @@ class Product(BaseModel):
     shop_measurement_values: List[ShopMeasurementValue]
     shop_prices: List[ShopPrice]
     updated_at: str
+
+
+class ProductListData(BaseModel):
+    count: int
+    products: List[Product]
 
 
 class ProductsListFilters(BaseModel):
