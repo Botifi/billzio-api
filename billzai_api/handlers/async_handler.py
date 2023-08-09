@@ -3,7 +3,8 @@ from typing import Optional
 from httpx import AsyncClient
 from .base import BaseBillzHandler
 from ..exceptions import *
-from ..models.products import ProductsListFilters, ProductListData
+from ..models.categories import CategoriesListData
+from ..models.products import ProductsListFilters, ProductListData, CategoriesListFilters
 
 
 class AsyncBillzHandler(BaseBillzHandler):
@@ -24,11 +25,23 @@ class AsyncBillzHandler(BaseBillzHandler):
     async def get_products(self, filters: Optional[ProductsListFilters]) -> ProductListData:
         await self._auth()
         resp = await self.http_client.get(self._products_route(),
-                                          params=filters.model_dump(),
+                                          params=filters.model_dump(exclude_unset=True),
                                           headers=self._request_auth_headers())
         json_resp: dict = resp.json()
         if resp.status_code == 200:
             products = ProductListData(**json_resp)
             return products
+        else:
+            raise ContentRetrieveError
+
+    async def get_categories(self, filters: Optional[CategoriesListFilters]) -> CategoriesListData:
+        await self._auth()
+        resp = await self.http_client.get(self._categories_route(),
+                                          params=filters.model_dump(exclude_unset=True),
+                                          headers=self._request_auth_headers())
+        json_resp: dict = resp.json()
+        if resp.status_code == 200:
+            cats = CategoriesListData(**json_resp)
+            return cats
         else:
             raise ContentRetrieveError

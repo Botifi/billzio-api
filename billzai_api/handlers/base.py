@@ -7,6 +7,7 @@ class BaseBillzHandler:
     HOST = "https://api-admin.billz.ai"
     AUTH_ROUTE_PATH = "/v1/auth/login"
     PRODUCTS_ROUTE_PATH = "/v2/products"
+    CATEGORIES_ROUTE_PATH = "/v2/category"
 
     def __init__(self, secret_token: str):
         self._secret_token = secret_token
@@ -17,6 +18,9 @@ class BaseBillzHandler:
 
     def _products_route(self) -> str:
         return f"{self.HOST}{self.PRODUCTS_ROUTE_PATH}"
+
+    def _categories_route(self) -> str:
+        return f"{self.HOST}{self.CATEGORIES_ROUTE_PATH}"
 
     def _set_auth_data(self, data: dict):
         self._auth_data = AuthLoginData(**data)

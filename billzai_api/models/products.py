@@ -70,8 +70,3 @@ class ProductsListFilters(BaseModel):
     limit: Optional[int] = None
     search: Optional[str] = None
 
-
-class CategoriesListFilters(BaseModel):
-    page: Optional[int] = None
-    limit: Optional[int] = None
-    search: Optional[str] = None
