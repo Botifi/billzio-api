@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "billzai-api"
+version = "1.0.0"
+description = "Python wrapper for Billz.io Public API"
+authors = ["Sirojiddin Mustafayev"]
+license = "Apache 2.0"
+readme = "README.md"
+packages = [{include = "billzai_api"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+httpx = "^0.24.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
