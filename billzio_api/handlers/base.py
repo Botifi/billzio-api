@@ -8,6 +8,7 @@ class BaseBillzHandler:
     AUTH_ROUTE_PATH = "/v1/auth/login"
     PRODUCTS_ROUTE_PATH = "/v2/products"
     CATEGORIES_ROUTE_PATH = "/v2/category"
+    SHOPS_ROUTE_PATH = "/v1/shop"
 
     def __init__(self, secret_token: str):
         self._secret_token = secret_token
@@ -21,6 +22,9 @@ class BaseBillzHandler:
 
     def _categories_route(self) -> str:
         return f"{self.HOST}{self.CATEGORIES_ROUTE_PATH}"
+
+    def _shops_route(self) -> str:
+        return f"{self.HOST}{self.SHOPS_ROUTE_PATH}"
 
     def _set_auth_data(self, data: dict):
         self._auth_data = AuthLoginData(**data)

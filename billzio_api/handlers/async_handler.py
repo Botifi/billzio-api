@@ -5,6 +5,7 @@ from .base import BaseBillzHandler
 from ..exceptions import *
 from ..models.categories import CategoriesListData, CategoriesListFilters
 from ..models.products import ProductsListFilters, ProductListData
+from ..models.shops import ShopsListFilters, ShopsListData
 
 
 class AsyncBillzHandler(BaseBillzHandler):
@@ -24,8 +25,9 @@ class AsyncBillzHandler(BaseBillzHandler):
 
     async def get_products(self, filters: Optional[ProductsListFilters]) -> ProductListData:
         await self._auth()
+        request_params = filters.model_dump(exclude_unset=True, exclude_none=True) if filters is not None else None
         resp = await self.http_client.get(self._products_route(),
-                                          params=filters.model_dump(exclude_unset=True),
+                                          params=request_params,
                                           headers=self._request_auth_headers())
         json_resp: dict = resp.json()
         if resp.status_code == 200:
@@ -36,12 +38,26 @@ class AsyncBillzHandler(BaseBillzHandler):
 
     async def get_categories(self, filters: Optional[CategoriesListFilters]) -> CategoriesListData:
         await self._auth()
+        request_params = filters.model_dump(exclude_unset=True, exclude_none=True) if filters is not None else None
         resp = await self.http_client.get(self._categories_route(),
-                                          params=filters.model_dump(exclude_unset=True),
+                                          params=request_params,
                                           headers=self._request_auth_headers())
         json_resp: dict = resp.json()
         if resp.status_code == 200:
             cats = CategoriesListData(**json_resp)
             return cats
+        else:
+            raise ContentRetrieveError
+
+    async def get_shops(self, filters: Optional[ShopsListFilters]) -> ShopsListData:
+        await self._auth()
+        request_params = filters.model_dump(exclude_unset=True, exclude_none=True) if filters is not None else None
+        resp = await self.http_client.get(self._shops_route(),
+                                          params=request_params,
+                                          headers=self._request_auth_headers())
+        json_resp: dict = resp.json()
+        if resp.status_code == 200:
+            shops = ShopsListData(**json_resp)
+            return shops
         else:
             raise ContentRetrieveError
