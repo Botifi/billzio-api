@@ -1,5 +1,5 @@
 # billzio-api
-Python wrapper for [Billz.io](https://billz.io) Public API (v2)
+Asynchronous Python wrapper for [Billz.io](https://billz.io) Public API (v2)
 
 ## Supported Billz API methods
 - [x] Auth login
@@ -13,3 +13,9 @@ Python wrapper for [Billz.io](https://billz.io) Public API (v2)
 - [ ] Add an Item (product) to the draft Order
 - [ ] Add a Consumer to the draft Order
 - [ ] Create an Order from the draft Order (make payment)
+
+## TODO
+- [ ] Upload to PyPi as a python package
+- [ ] Write unit tests
+- [ ] Caching auth data with its expiration
+- [ ] Synchronous handler
