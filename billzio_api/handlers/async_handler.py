@@ -4,6 +4,7 @@ from httpx import AsyncClient
 from .base import BaseBillzHandler
 from ..exceptions import *
 from ..models.categories import CategoriesListData, CategoriesListFilters
+from ..models.currencies import CurrenciesListData
 from ..models.products import ProductsListFilters, ProductListData
 from ..models.shops import ShopsListFilters, ShopsListData
 
@@ -59,5 +60,16 @@ class AsyncBillzHandler(BaseBillzHandler):
         if resp.status_code == 200:
             shops = ShopsListData(**json_resp)
             return shops
+        else:
+            raise ContentRetrieveError
+
+    async def get_currencies(self) -> CurrenciesListData:
+        await self._auth()
+        resp = await self.http_client.get(self._currencies_route(),
+                                          headers=self._request_auth_headers())
+        json_resp: dict = resp.json()
+        if resp.status_code == 200:
+            currencies = CurrenciesListData(**json_resp)
+            return currencies
         else:
             raise ContentRetrieveError

@@ -6,8 +6,8 @@ Python wrapper for [Billz.io](https://billz.io) Public API (v2)
 - [x] Get Products list
 - [x] Get Categories list
 - [x] Get Shops list
+- [x] Get Currencies list
 - [ ] Get Brands list
-- [ ] Get Currencies list
 - [ ] Create a new Client
 - [ ] Create a draft Order
 - [ ] Add an Item (product) to the draft Order
