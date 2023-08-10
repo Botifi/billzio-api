@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "billzai-api"
+name = "billzio-api"
 version = "1.0.0"
 description = "Python wrapper for Billz.io Public API"
 authors = ["Sirojiddin Mustafayev"]
 license = "Apache 2.0"
 readme = "README.md"
-packages = [{include = "billzai_api"}]
+packages = [{include = "billzio_api"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"

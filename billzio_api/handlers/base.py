@@ -1,6 +1,6 @@
 from typing import Optional
 
-from billzai_api.models.auth import AuthLoginData
+from billzio_api.models.auth import AuthLoginData
 
 
 class BaseBillzHandler:

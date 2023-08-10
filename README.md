@@ -1,4 +1,4 @@
-# billzai-api
+# billzio-api
 Python wrapper for [Billz.io](https://billz.io) Public API (v2)
 
 ## Supported Billz API methods

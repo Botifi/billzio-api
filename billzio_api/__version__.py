@@ -1,4 +1,4 @@
-__title__ = "billzai_api"
+__title__ = "billzio_api"
 __description__ = "Python wrapper for Billz.io Public API"
 __version__ = "1.0.0"
 __author__ = "Sirojiddin Mustafayev"
