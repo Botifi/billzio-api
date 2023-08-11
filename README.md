@@ -15,7 +15,7 @@ Asynchronous Python wrapper for [Billz.io](https://billz.io) Public API (v2)
 - [ ] Create an Order from the draft Order (make payment)
 
 ## TODO
-- [ ] Upload to PyPi as a python package
+- [x] Upload to PyPi as a python package
 - [ ] Write unit tests
 - [ ] Caching auth data with its expiration
 - [ ] Synchronous handler
