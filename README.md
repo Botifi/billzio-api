@@ -1,6 +1,9 @@
 # billzio-api
 Asynchronous Python wrapper for [Billz.io](https://billz.io) Public API (v2)
 
+## Installation
+`pip install billzio-api`
+
 ## Supported Billz API methods
 - [x] Auth login
 - [x] Get Products list
@@ -13,6 +16,20 @@ Asynchronous Python wrapper for [Billz.io](https://billz.io) Public API (v2)
 - [ ] Add an Item (product) to the draft Order
 - [ ] Add a Consumer to the draft Order
 - [ ] Create an Order from the draft Order (make payment)
+
+## Usage:
+
+```python 
+import asyncio  # for running synchronously
+
+from billzio_api import AsyncBillzHandler, ShopsListFilters
+
+handler = AsyncBillzHandler("<secret_key>")
+filters = ShopsListFilters(limit=1)
+shops = asyncio.run(handler.get_shops(filters))
+print(shops.count)
+print(shops.shops)
+```
 
 ## TODO
 - [x] Upload to PyPi as a python package
