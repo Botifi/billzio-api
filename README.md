@@ -33,6 +33,6 @@ print(shops.shops)
 
 ## TODO
 - [x] Upload to PyPi as a python package
+- [x] Synchronous handler
 - [ ] Write unit tests
 - [ ] Caching auth data with its expiration
-- [ ] Synchronous handler
