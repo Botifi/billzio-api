@@ -18,12 +18,23 @@ Asynchronous Python wrapper for [Billz.io](https://billz.io) Public API (v2)
 - [ ] Create an Order from the draft Order (make payment)
 
 ## Usage:
+```python
+from billzio_api import BillzHandler, ShopsListFilters
 
+handler = BillzHandler("<secret_key>")
+filters = ShopsListFilters(limit=1)
+shops = handler.get_shops(filters)
+print(shops.count)
+print(shops.shops)
+```
+
+### Asynchronous
 ```python 
 import asyncio  # for running synchronously
 
 from billzio_api import AsyncBillzHandler, ShopsListFilters
 
+...
 handler = AsyncBillzHandler("<secret_key>")
 filters = ShopsListFilters(limit=1)
 shops = asyncio.run(handler.get_shops(filters))
