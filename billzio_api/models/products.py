@@ -22,6 +22,7 @@ class MeasurementUnit(BaseModel):
 
 class ProductAttribute(BaseModel):
     attribute_id: str
+    attribute_name: Optional[str]
     attribute_value: str
     attribute_value_id: str
 
