@@ -1,5 +1,9 @@
 from typing import Optional
 
+import httpx
+from pydantic import BaseModel
+
+from billzio_api.exceptions import ContentRetrieveError
 from billzio_api.models.auth import AuthLoginData
 
 
@@ -39,3 +43,11 @@ class BaseBillzHandler:
             "Authorization": f"Bearer {self._auth_data.access_token}"
         }
         return request_headers
+
+    def _resp_to_model(self, resp: httpx.Response, scheme):
+        json_resp: dict = resp.json()
+        if httpx.codes.is_success(resp.status_code):
+            products = scheme(**json_resp)
+            return products
+        else:
+            raise ContentRetrieveError

@@ -30,12 +30,7 @@ class AsyncBillzHandler(BaseBillzHandler):
         resp = await self.http_client.get(self._products_route(),
                                           params=request_params,
                                           headers=self._request_auth_headers())
-        json_resp: dict = resp.json()
-        if resp.status_code == 200:
-            products = ProductListData(**json_resp)
-            return products
-        else:
-            raise ContentRetrieveError
+        return self._resp_to_model(resp, ProductListData)
 
     async def get_categories(self, filters: Optional[CategoriesListFilters]) -> CategoriesListData:
         await self._auth()
@@ -43,12 +38,7 @@ class AsyncBillzHandler(BaseBillzHandler):
         resp = await self.http_client.get(self._categories_route(),
                                           params=request_params,
                                           headers=self._request_auth_headers())
-        json_resp: dict = resp.json()
-        if resp.status_code == 200:
-            cats = CategoriesListData(**json_resp)
-            return cats
-        else:
-            raise ContentRetrieveError
+        return self._resp_to_model(resp, CategoriesListData)
 
     async def get_shops(self, filters: Optional[ShopsListFilters]) -> ShopsListData:
         await self._auth()
@@ -56,20 +46,10 @@ class AsyncBillzHandler(BaseBillzHandler):
         resp = await self.http_client.get(self._shops_route(),
                                           params=request_params,
                                           headers=self._request_auth_headers())
-        json_resp: dict = resp.json()
-        if resp.status_code == 200:
-            shops = ShopsListData(**json_resp)
-            return shops
-        else:
-            raise ContentRetrieveError
+        return self._resp_to_model(resp, ShopsListData)
 
     async def get_currencies(self) -> CurrenciesListData:
         await self._auth()
         resp = await self.http_client.get(self._currencies_route(),
                                           headers=self._request_auth_headers())
-        json_resp: dict = resp.json()
-        if resp.status_code == 200:
-            currencies = CurrenciesListData(**json_resp)
-            return currencies
-        else:
-            raise ContentRetrieveError
+        return self._resp_to_model(resp, CurrenciesListData)
