@@ -5,6 +5,7 @@ from .base import BaseBillzHandler
 from ..exceptions import *
 from ..models.categories import CategoriesListData, CategoriesListFilters
 from ..models.currencies import CurrenciesListData
+from ..models.payment_types import PaymentTypesListData
 from ..models.products import ProductsListFilters, ProductListData
 from ..models.shops import ShopsListFilters, ShopsListData
 
@@ -53,3 +54,9 @@ class AsyncBillzHandler(BaseBillzHandler):
         resp = await self.http_client.get(self._currencies_route(),
                                           headers=self._request_auth_headers())
         return self._resp_to_model(resp, CurrenciesListData)
+
+    async def get_payment_types(self) -> PaymentTypesListData:
+        await self._auth()
+        resp = await self.http_client.get(self._payment_types_route(),
+                                          headers=self._request_auth_headers())
+        return self._resp_to_model(resp, PaymentTypesListData)
