@@ -3,6 +3,7 @@ from typing import Optional
 from httpx import AsyncClient, Client
 from .base import BaseBillzHandler
 from ..exceptions import *
+from ..models.brands import BrandsListData, BrandsListFilters
 from ..models.categories import CategoriesListData, CategoriesListFilters
 from ..models.currencies import CurrenciesListData
 from ..models.payment_types import PaymentTypesListData
@@ -60,3 +61,12 @@ class BillzHandler(BaseBillzHandler):
         resp = self.http_client.get(self._payment_types_route(),
                                     headers=self._request_auth_headers())
         return self._resp_to_model(resp, PaymentTypesListData)
+
+    def get_brands(self, filters: Optional[BrandsListFilters]) -> BrandsListData:
+        self._auth()
+        request_params = filters.model_dump(exclude_unset=True, exclude_none=True) if filters is not None else None
+        resp = self.http_client.get(self._brands_list_route(),
+                                    params=request_params,
+                                    headers=self._request_auth_headers())
+        return self._resp_to_model(resp, BrandsListData)
+
