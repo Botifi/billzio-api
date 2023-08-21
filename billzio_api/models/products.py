@@ -50,6 +50,7 @@ class Product(BaseModel):
     description: str
     is_variative: bool
     main_image_url: str
+    main_image_url_full: Optional[str]
     categories: List[Category]
     custom_fields: Optional[List[CustomField]]
     measurement_unit: MeasurementUnit
