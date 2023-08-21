@@ -5,6 +5,7 @@ from .base import BaseBillzHandler
 from ..exceptions import *
 from ..models.brands import BrandsListFilters, BrandsListData
 from ..models.categories import CategoriesListData, CategoriesListFilters
+from ..models.clients import ClientsListFilters, ClientsListData
 from ..models.currencies import CurrenciesListData
 from ..models.payment_types import PaymentTypesListData
 from ..models.products import ProductsListFilters, ProductListData
@@ -69,3 +70,11 @@ class AsyncBillzHandler(BaseBillzHandler):
                                           params=request_params,
                                           headers=self._request_auth_headers())
         return self._resp_to_model(resp, BrandsListData)
+
+    async def get_clients(self, filters: Optional[ClientsListFilters]) -> ClientsListData:
+        await self._auth()
+        request_params = filters.model_dump(exclude_unset=True, exclude_none=True) if filters is not None else None
+        resp = await self.http_client.get(self._clients_list_create_route(),
+                                          params=request_params,
+                                          headers=self._request_auth_headers())
+        return self._resp_to_model(resp, ClientsListData)
