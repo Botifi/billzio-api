@@ -12,6 +12,7 @@ Asynchronous Python wrapper for [Billz.io](https://billz.io) Public API (v2)
 - [x] Get Currencies list
 - [x] Get Payment types list
 - [x] Get Brands list
+- [x] Get all Clients
 - [ ] Create a new Client
 - [ ] Create a draft Order
 - [ ] Add an Item (product) to the draft Order
