@@ -15,10 +15,11 @@ Asynchronous Python wrapper for [Billz.io](https://billz.io) Public API (v2)
 - [x] Get all Clients
 - [x] Create a new Client
 - [x] Update a Client
-- [ ] Create a draft Order
-- [ ] Add an Item (product) to the draft Order
-- [ ] Add a Consumer to the draft Order
-- [ ] Create an Order from the draft Order (make payment)
+- [x] Create a new order
+  - [x] Create a draft Order
+  - [x] Add an Item (product) to the draft Order
+  - [x] Add a Consumer to the draft Order
+  - [x] Create an Order from the draft Order (make payment)
 
 ## Usage:
 ```python
