@@ -23,6 +23,9 @@ class BaseBillzHandler:
         self._secret_token = secret_token
         self._auth_data: Optional[AuthLoginData] = None
 
+    def _auth(self):
+        raise NotImplementedError()
+
     def _auth_route(self) -> str:
         return f"{self.HOST}{self.AUTH_ROUTE_PATH}"
 

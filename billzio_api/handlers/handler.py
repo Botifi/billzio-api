@@ -16,6 +16,7 @@ class BillzHandler(BaseBillzHandler):
     def __init__(self, secret_token: str):
         self.http_client = Client()
         super().__init__(secret_token)
+        self._auth()
 
     def _auth(self):
         if self._auth_data is None:
@@ -28,7 +29,6 @@ class BillzHandler(BaseBillzHandler):
                 raise AuthLoginError
 
     def get_products(self, filters: Optional[ProductsListFilters]) -> ProductListData:
-        self._auth()
         request_params = filters.model_dump(exclude_unset=True, exclude_none=True) if filters is not None else None
         resp = self.http_client.get(self._products_route(),
                                     params=request_params,
@@ -36,7 +36,6 @@ class BillzHandler(BaseBillzHandler):
         return self._resp_to_model(resp, ProductListData)
 
     def get_categories(self, filters: Optional[CategoriesListFilters]) -> CategoriesListData:
-        self._auth()
         request_params = filters.model_dump(exclude_unset=True, exclude_none=True) if filters is not None else None
         resp = self.http_client.get(self._categories_route(),
                                     params=request_params,
@@ -44,7 +43,6 @@ class BillzHandler(BaseBillzHandler):
         return self._resp_to_model(resp, CategoriesListData)
 
     def get_shops(self, filters: Optional[ShopsListFilters]) -> ShopsListData:
-        self._auth()
         request_params = filters.model_dump(exclude_unset=True, exclude_none=True) if filters is not None else None
         resp = self.http_client.get(self._shops_route(),
                                     params=request_params,
@@ -52,19 +50,16 @@ class BillzHandler(BaseBillzHandler):
         return self._resp_to_model(resp, ShopsListData)
 
     def get_currencies(self) -> CurrenciesListData:
-        self._auth()
         resp = self.http_client.get(self._currencies_route(),
                                     headers=self._request_auth_headers())
         return self._resp_to_model(resp, CurrenciesListData)
 
     def get_payment_types(self) -> PaymentTypesListData:
-        self._auth()
         resp = self.http_client.get(self._payment_types_route(),
                                     headers=self._request_auth_headers())
         return self._resp_to_model(resp, PaymentTypesListData)
 
     def get_brands(self, filters: Optional[BrandsListFilters]) -> BrandsListData:
-        self._auth()
         request_params = filters.model_dump(exclude_unset=True, exclude_none=True) if filters is not None else None
         resp = self.http_client.get(self._brands_list_route(),
                                     params=request_params,
@@ -72,7 +67,6 @@ class BillzHandler(BaseBillzHandler):
         return self._resp_to_model(resp, BrandsListData)
 
     def get_clients(self, filters: Optional[ClientsListFilters]) -> ClientsListData:
-        self._auth()
         request_params = filters.model_dump(exclude_unset=True, exclude_none=True) if filters is not None else None
         resp = self.http_client.get(self._clients_list_create_route(),
                                     params=request_params,
