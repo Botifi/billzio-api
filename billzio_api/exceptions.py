@@ -8,3 +8,7 @@ class ContentRetrieveError(Exception):
 
 class ContentCreateError(Exception):
     pass
+
+
+class ContentUpdateError(Exception):
+    pass

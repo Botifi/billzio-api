@@ -14,7 +14,7 @@ Asynchronous Python wrapper for [Billz.io](https://billz.io) Public API (v2)
 - [x] Get Brands list
 - [x] Get all Clients
 - [x] Create a new Client
-- [ ] Update a Client
+- [x] Update a Client
 - [ ] Create a draft Order
 - [ ] Add an Item (product) to the draft Order
 - [ ] Add a Consumer to the draft Order

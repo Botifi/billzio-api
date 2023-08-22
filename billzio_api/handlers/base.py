@@ -18,6 +18,7 @@ class BaseBillzHandler:
     BRANDS_ROUTE_PATH = "/v2/brand"
 
     CLIENTS_ROUTE_PATH = "/v1/client"
+    CLIENT_DETAIL_ROUTE_PATH = "/v1/client/{client_id}"
 
     def __init__(self, secret_token: str):
         self._secret_token = secret_token
@@ -49,6 +50,9 @@ class BaseBillzHandler:
 
     def _clients_list_create_route(self) -> str:
         return f"{self.HOST}{self.CLIENTS_ROUTE_PATH}"
+
+    def _clients_detail_route(self, client_id: str) -> str:
+        return f"{self.HOST}{self.CLIENT_DETAIL_ROUTE_PATH.format(client_id=client_id)}"
 
     def _set_auth_data(self, data: dict):
         self._auth_data = AuthLoginData(**data)

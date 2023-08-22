@@ -5,7 +5,7 @@ from .base import BaseBillzHandler
 from ..exceptions import *
 from ..models.brands import BrandsListFilters, BrandsListData
 from ..models.categories import CategoriesListData, CategoriesListFilters
-from ..models.clients import ClientsListFilters, ClientsListData, NewClientData, NewClientResponse
+from ..models.clients import ClientsListFilters, ClientsListData, UpsertClientData, NewClientResponse
 from ..models.currencies import CurrenciesListData
 from ..models.payment_types import PaymentTypesListData
 from ..models.products import ProductsListFilters, ProductListData
@@ -79,9 +79,19 @@ class AsyncBillzHandler(BaseBillzHandler):
                                           headers=self._request_auth_headers())
         return self._resp_to_model(resp, ClientsListData)
 
-    async def create_client(self, data: NewClientData) -> NewClientResponse:
+    async def create_client(self, data: UpsertClientData) -> NewClientResponse:
         await self._auth()
         resp = await self.http_client.post(self._clients_list_create_route(),
                                            json=data.model_dump(),
                                            headers=self._request_auth_headers())
         return self._resp_to_model(resp, NewClientResponse)
+
+    async def update_client(self, client_id: str, data: UpsertClientData) -> bool:
+        await self._auth()
+        resp = await self.http_client.put(self._clients_detail_route(client_id),
+                                          json=data.model_dump(exclude_unset=True, exclude_none=True),
+                                          headers=self._request_auth_headers())
+        if resp.is_success:
+            return True
+        else:
+            raise ContentUpdateError

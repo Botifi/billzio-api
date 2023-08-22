@@ -40,13 +40,13 @@ class ClientGenderEnum(int, Enum):
     female = 2
 
 
-class NewClientData(BaseModel):
-    chat_id: str  # chat_id in Telegram messenger
-    date_of_birth: str  # format 2022-05-14
-    first_name: str
-    last_name: str
-    gender: ClientGenderEnum
-    phone_number: str
+class UpsertClientData(BaseModel):
+    chat_id: Optional[str] = None  # chat_id in Telegram messenger
+    date_of_birth: Optional[str] = None  # format 2022-05-14
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    gender: Optional[ClientGenderEnum] = None
+    phone_number: Optional[str] = None
 
 
 class NewClientResponse(BaseModel):
