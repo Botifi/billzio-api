@@ -1,3 +1,4 @@
+from enum import Enum
 from typing import Optional, List
 
 from pydantic import BaseModel
@@ -30,4 +31,23 @@ class ClientsListFilters(BaseModel):
     limit: Optional[int] = None
     search: Optional[str] = None
     phone_number: Optional[str] = None
-    chat_id: Optional[str] = None  # chat_id клиента в телеграм
+    chat_id: Optional[str] = None  # chat_id in Telegram messenger
+
+
+class ClientGenderEnum(int, Enum):
+    not_set = 0
+    male = 1
+    female = 2
+
+
+class NewClientData(BaseModel):
+    chat_id: str  # chat_id in Telegram messenger
+    date_of_birth: str  # format 2022-05-14
+    first_name: str
+    last_name: str
+    gender: ClientGenderEnum
+    phone_number: str
+
+
+class NewClientResponse(BaseModel):
+    id: str

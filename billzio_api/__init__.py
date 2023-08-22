@@ -8,4 +8,4 @@ from .models.categories import CategoriesListFilters, CategoriesListData
 from .models.currencies import CurrenciesListData
 from .models.payment_types import PaymentTypesListData
 from .models.brands import BrandsListData, BrandsListFilters
-from .models.clients import ClientsListData, ClientsListFilters
+from .models.clients import ClientsListData, ClientsListFilters, NewClientData

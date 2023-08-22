@@ -3,7 +3,7 @@ from typing import Optional
 import httpx
 from pydantic import BaseModel
 
-from billzio_api.exceptions import ContentRetrieveError
+from billzio_api.exceptions import ContentRetrieveError, ContentCreateError
 from billzio_api.models.auth import AuthLoginData
 
 
@@ -66,4 +66,7 @@ class BaseBillzHandler:
             products = scheme(**json_resp)
             return products
         else:
-            raise ContentRetrieveError
+            if resp.request.method == "POST":
+                raise ContentCreateError
+            else:
+                raise ContentRetrieveError

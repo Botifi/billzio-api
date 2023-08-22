@@ -5,7 +5,7 @@ from .base import BaseBillzHandler
 from ..exceptions import *
 from ..models.brands import BrandsListFilters, BrandsListData
 from ..models.categories import CategoriesListData, CategoriesListFilters
-from ..models.clients import ClientsListFilters, ClientsListData
+from ..models.clients import ClientsListFilters, ClientsListData, NewClientData, NewClientResponse
 from ..models.currencies import CurrenciesListData
 from ..models.payment_types import PaymentTypesListData
 from ..models.products import ProductsListFilters, ProductListData
@@ -78,3 +78,10 @@ class AsyncBillzHandler(BaseBillzHandler):
                                           params=request_params,
                                           headers=self._request_auth_headers())
         return self._resp_to_model(resp, ClientsListData)
+
+    async def create_client(self, data: NewClientData) -> NewClientResponse:
+        await self._auth()
+        resp = await self.http_client.post(self._clients_list_create_route(),
+                                           json=data.model_dump(),
+                                           headers=self._request_auth_headers())
+        return self._resp_to_model(resp, NewClientResponse)
