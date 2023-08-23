@@ -71,5 +71,5 @@ class ProductsListFilters(BaseModel):
     page: Optional[int] = None
     limit: Optional[int] = None
     search: Optional[str] = None
-    last_updated_date: Optional[str] = None
+    last_updated_date: Optional[str] = None  # format: yyyy-mm-dd 00:00:00
 
