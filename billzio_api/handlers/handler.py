@@ -89,13 +89,16 @@ class BillzHandler(BaseBillzHandler):
         else:
             raise ContentUpdateError
 
-    def create_order(self, data: NewOrderData) -> Optional[str]:
+    def create_order(self, data: NewOrderData, finish=True) -> Optional[str]:
+        """ Creates a new draft order and attaches products and customer to it.
+        And if :finish is True then it will be marked as paid (finish) """
         order_id = self._create_draft_order(data.shop_id)
         if order_id:
             for p in data.products:
                 self._add_product_to_draft_order(order_id, p)
             self._add_customer_to_draft_order(order_id, data.customer_id)
-            self._finish_draft_order(order_id, data.payments)
+            if finish:
+                self.finish_draft_order(order_id, data.payments)
         return order_id
 
     def _create_draft_order(self, shop_id: str) -> Optional[str]:
@@ -153,7 +156,7 @@ class BillzHandler(BaseBillzHandler):
             error = resp.json()
             raise ContentCreateError(error["error"]["message"])
 
-    def _finish_draft_order(self, order_id: str, payments: List[NewOrderPayment]):
+    def finish_draft_order(self, order_id: str, payments: List[NewOrderPayment]):
         data = {
             "method": "order.make_payment",
             "params": {

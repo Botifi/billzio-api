@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -18,4 +18,4 @@ class NewOrderData(BaseModel):
     shop_id: str
     products: List[NewOrderProduct]
     customer_id: str
-    payments: List[NewOrderPayment]
+    payments: Optional[List[NewOrderPayment]]

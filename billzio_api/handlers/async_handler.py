@@ -97,14 +97,17 @@ class AsyncBillzHandler(BaseBillzHandler):
         else:
             raise ContentUpdateError
 
-    async def create_order(self, data: NewOrderData) -> Optional[str]:
+    async def create_order(self, data: NewOrderData, finish=True) -> Optional[str]:
+        """ Creates a new draft order and attaches products and customer to it.
+            And if :finish is True then it will be marked as paid (finish) """
         await self._auth()
         order_id = await self._create_draft_order(data.shop_id)
         if order_id:
             for p in data.products:
                 await self._add_product_to_draft_order(order_id, p)
             await self._add_customer_to_draft_order(order_id, data.customer_id)
-            await self._finish_draft_order(order_id, data.payments)
+            if finish:
+                await self.finish_draft_order(order_id, data.payments)
         return order_id
 
     async def _create_draft_order(self, shop_id: str) -> Optional[str]:
@@ -162,7 +165,7 @@ class AsyncBillzHandler(BaseBillzHandler):
             error = resp.json()
             raise ContentCreateError(error["error"]["message"])
 
-    async def _finish_draft_order(self, order_id: str, payments: List[NewOrderPayment]):
+    async def finish_draft_order(self, order_id: str, payments: List[NewOrderPayment]):
         data = {
             "method": "order.make_payment",
             "params": {
