@@ -28,7 +28,7 @@ class ProductAttribute(BaseModel):
 
 
 class ShopMeasurementValue(BaseModel):
-    active_measurement_value: int
+    active_measurement_value: int | float
     shop_id: str
     shop_name: str
 
