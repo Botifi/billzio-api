@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "billzio-api"
-version = "1.0.8"
+version = "1.0.9"
 description = "Python wrapper for Billz.io Public API"
 authors = ["Sirojiddin Mustafayev"]
 license = "Apache 2.0"

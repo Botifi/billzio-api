@@ -6,12 +6,12 @@ from pydantic import BaseModel
 class NewOrderPayment(BaseModel):
     id: str
     company_payment_type_id: str
-    paid_amount: int
+    paid_amount: int | float
 
 
 class NewOrderProduct(BaseModel):
     id: str
-    measurement_value: int
+    measurement_value: int | float
 
 
 class NewOrderData(BaseModel):

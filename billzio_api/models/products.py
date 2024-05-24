@@ -35,7 +35,7 @@ class ShopMeasurementValue(BaseModel):
 
 class ShopPrice(BaseModel):
     retail_currency: str
-    retail_price: int
+    retail_price: int | float
     shop_id: str
     shop_name: str
 
