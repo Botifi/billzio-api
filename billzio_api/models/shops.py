@@ -30,7 +30,7 @@ class Shop(BaseModel):
 
 class ShopsListData(BaseModel):
     count: int
-    shops: List[Shop]
+    shops: Optional[List[Shop]]
 
 
 class ShopsListFilters(BaseModel):

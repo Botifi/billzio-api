@@ -23,7 +23,7 @@ class Client(BaseModel):
 
 class ClientsListData(BaseModel):
     count: int
-    clients: List[Client]
+    clients: Optional[List[Client]]
 
 
 class ClientsListFilters(BaseModel):

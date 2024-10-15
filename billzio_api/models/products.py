@@ -64,7 +64,7 @@ class Product(BaseModel):
 
 class ProductListData(BaseModel):
     count: int
-    products: List[Product]
+    products: Optional[List[Product]]
 
 
 class ProductsListFilters(BaseModel):

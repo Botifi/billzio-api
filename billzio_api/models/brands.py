@@ -11,8 +11,8 @@ class Brand(BaseModel):
 
 
 class BrandsListData(BaseModel):
-    brands: List[Brand]
     count: int
+    brands: Optional[List[Brand]]
 
 
 class BrandsListFilters(BaseModel):

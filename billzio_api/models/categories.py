@@ -32,8 +32,8 @@ class Category(BaseModel):
 
 
 class CategoriesListData(BaseModel):
-    categories: List[Category]
     count: int
+    categories: Optional[List[Category]]
 
 
 class CategoriesListFilters(BaseModel):

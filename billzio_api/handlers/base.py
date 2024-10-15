@@ -72,8 +72,8 @@ class BaseBillzHandler:
     def _resp_to_model(self, resp: httpx.Response, scheme):
         json_resp: dict = resp.json()
         if httpx.codes.is_success(resp.status_code):
-            products = scheme(**json_resp)
-            return products
+            scheme_class = scheme(**json_resp)
+            return scheme_class
         else:
             if resp.request.method == "POST":
                 raise ContentCreateError
