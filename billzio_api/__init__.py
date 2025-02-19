@@ -1,4 +1,4 @@
-__version__ = "1.0.11"
+__version__ = "1.0.12"
 
 from .handlers.async_handler import AsyncBillzHandler
 from .handlers.handler import BillzHandler

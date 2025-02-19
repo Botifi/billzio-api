@@ -64,7 +64,7 @@ class Product(BaseModel):
     shop_measurement_values: List[ShopMeasurementValue]
     shop_prices: List[ShopPrice]
     updated_at: str
-    images: Optional[List[ProductImage]]
+    images: Optional[List[ProductImage]] = None
 
 
 class ProductListData(BaseModel):
