@@ -1,6 +1,6 @@
 __title__ = "billzio_api"
 __description__ = "Python wrapper for Billz.io Public API"
-__version__ = "1.0.10"
+__version__ = "1.0.11"
 __author__ = "Sirojiddin Mustafayev"
 __author_email__ = "sirojiddinmustafayev@gmail.com"
 __license__ = "Apache 2.0"

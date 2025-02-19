@@ -40,6 +40,10 @@ class ShopPrice(BaseModel):
     shop_name: str
 
 
+class ProductImage(BaseModel):
+    image_url: str
+
+
 class Product(BaseModel):
     id: str
     name: str
@@ -60,6 +64,7 @@ class Product(BaseModel):
     shop_measurement_values: List[ShopMeasurementValue]
     shop_prices: List[ShopPrice]
     updated_at: str
+    images: Optional[List[ProductImage]]
 
 
 class ProductListData(BaseModel):
