@@ -42,6 +42,8 @@ class ShopPrice(BaseModel):
 
 class ProductImage(BaseModel):
     image_url: str
+    sequence: int
+    is_main: bool
 
 
 class Product(BaseModel):
@@ -64,7 +66,7 @@ class Product(BaseModel):
     shop_measurement_values: List[ShopMeasurementValue]
     shop_prices: List[ShopPrice]
     updated_at: str
-    images: Optional[List[ProductImage]] = None
+    photos: Optional[List[ProductImage]] = None
 
 
 class ProductListData(BaseModel):
