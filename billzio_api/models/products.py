@@ -41,7 +41,7 @@ class ShopPrice(BaseModel):
 
 
 class ProductImage(BaseModel):
-    image_url: str
+    photo_url: str
     sequence: int
     is_main: bool
 
