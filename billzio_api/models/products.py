@@ -33,11 +33,21 @@ class ShopMeasurementValue(BaseModel):
     shop_name: str
 
 
+class Promos(BaseModel):
+    id: str
+    external_id: str
+    name: str
+    discount_value: float
+    discount_type: str  # "PERCENTAGE" or "FIXED PRICE"
+
+
 class ShopPrice(BaseModel):
     retail_currency: str
     retail_price: int | float
     supply_currency: Optional[str] = None
     supply_price: Optional[int | float] = None
+    promo_price: Optional[float] = None
+    promos: Optional[list[Promos]] = None
     shop_id: str
     shop_name: str
 
