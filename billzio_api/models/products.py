@@ -36,6 +36,8 @@ class ShopMeasurementValue(BaseModel):
 class ShopPrice(BaseModel):
     retail_currency: str
     retail_price: int | float
+    supply_currency: Optional[str] = None
+    supply_price: Optional[int | float] = None
     shop_id: str
     shop_name: str
 
