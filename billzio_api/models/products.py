@@ -80,6 +80,9 @@ class Product(BaseModel):
     updated_at: str
     photos: Optional[List[ProductImage]] = None
 
+    class Config:
+        extra = "allow"
+
 
 class ProductListData(BaseModel):
     count: int
