@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "billzio-api"
-version = "1.0.15"
+version = "1.0.16"
 description = "Python wrapper for Billz.io Public API"
 authors = ["Sirojiddin Mustafayev"]
 license = "Apache 2.0"
@@ -9,8 +9,8 @@ packages = [{include = "billzio_api"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-httpx = "^0.24.1"
-pydantic = "^2.1.1"
+httpx = "^0.28.1"
+pydantic = "^2.12.5"
 
 
 [build-system]
